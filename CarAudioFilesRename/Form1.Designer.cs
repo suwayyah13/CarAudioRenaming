@@ -35,11 +35,14 @@
             this.labelFolderOut = new System.Windows.Forms.Label();
             this.textFolderOut = new System.Windows.Forms.TextBox();
             this.buttonChooseFolderOut = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelFileTypes = new System.Windows.Forms.Label();
+            this.textFileTypes = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonChooseFolderIn
             // 
-            this.buttonChooseFolderIn.Location = new System.Drawing.Point(472, 26);
+            this.buttonChooseFolderIn.Location = new System.Drawing.Point(400, 40);
             this.buttonChooseFolderIn.Name = "buttonChooseFolderIn";
             this.buttonChooseFolderIn.Size = new System.Drawing.Size(90, 20);
             this.buttonChooseFolderIn.TabIndex = 0;
@@ -49,53 +52,89 @@
             // 
             // textFolderIn
             // 
-            this.textFolderIn.Location = new System.Drawing.Point(159, 26);
+            this.textFolderIn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textFolderIn.Location = new System.Drawing.Point(90, 40);
             this.textFolderIn.Name = "textFolderIn";
             this.textFolderIn.ReadOnly = true;
-            this.textFolderIn.Size = new System.Drawing.Size(286, 20);
+            this.textFolderIn.Size = new System.Drawing.Size(300, 20);
             this.textFolderIn.TabIndex = 1;
             // 
             // labelFolderIn
             // 
-            this.labelFolderIn.AutoSize = true;
-            this.labelFolderIn.Location = new System.Drawing.Point(12, 29);
+            this.labelFolderIn.Location = new System.Drawing.Point(10, 40);
             this.labelFolderIn.Name = "labelFolderIn";
-            this.labelFolderIn.Size = new System.Drawing.Size(70, 13);
+            this.labelFolderIn.Size = new System.Drawing.Size(70, 20);
             this.labelFolderIn.TabIndex = 2;
             this.labelFolderIn.Text = "Source folder";
+            this.labelFolderIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelFolderOut
             // 
-            this.labelFolderOut.AutoSize = true;
-            this.labelFolderOut.Location = new System.Drawing.Point(12, 61);
+            this.labelFolderOut.Location = new System.Drawing.Point(10, 70);
             this.labelFolderOut.Name = "labelFolderOut";
-            this.labelFolderOut.Size = new System.Drawing.Size(66, 13);
+            this.labelFolderOut.Size = new System.Drawing.Size(70, 20);
             this.labelFolderOut.TabIndex = 3;
             this.labelFolderOut.Text = "Result folder";
+            this.labelFolderOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textFolderOut
             // 
-            this.textFolderOut.Location = new System.Drawing.Point(159, 61);
+            this.textFolderOut.Location = new System.Drawing.Point(90, 70);
             this.textFolderOut.Name = "textFolderOut";
             this.textFolderOut.ReadOnly = true;
-            this.textFolderOut.Size = new System.Drawing.Size(286, 20);
+            this.textFolderOut.Size = new System.Drawing.Size(300, 20);
             this.textFolderOut.TabIndex = 4;
             // 
             // buttonChooseFolderOut
             // 
-            this.buttonChooseFolderOut.Location = new System.Drawing.Point(472, 61);
+            this.buttonChooseFolderOut.Location = new System.Drawing.Point(400, 70);
             this.buttonChooseFolderOut.Name = "buttonChooseFolderOut";
             this.buttonChooseFolderOut.Size = new System.Drawing.Size(90, 20);
             this.buttonChooseFolderOut.TabIndex = 5;
-            this.buttonChooseFolderOut.Text = "Chooser folder";
+            this.buttonChooseFolderOut.Text = "Choose folder";
             this.buttonChooseFolderOut.UseVisualStyleBackColor = true;
             this.buttonChooseFolderOut.Click += new System.EventHandler(this.ChooseFolderOut);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(400, 100);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 20);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Copy && rename";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.RenameAndCopyFiles);
+            // 
+            // labelFileTypes
+            // 
+            this.labelFileTypes.Location = new System.Drawing.Point(10, 10);
+            this.labelFileTypes.Name = "labelFileTypes";
+            this.labelFileTypes.Size = new System.Drawing.Size(70, 20);
+            this.labelFileTypes.TabIndex = 7;
+            this.labelFileTypes.Text = "File types";
+            this.labelFileTypes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textFileTypes
+            // 
+            this.textFileTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textFileTypes.Location = new System.Drawing.Point(90, 10);
+            this.textFileTypes.Name = "textFileTypes";
+            this.textFileTypes.Size = new System.Drawing.Size(300, 20);
+            this.textFileTypes.TabIndex = 8;
+            this.textFileTypes.Text = "*.mp3";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(504, 134);
+            this.Controls.Add(this.textFileTypes);
+            this.Controls.Add(this.labelFileTypes);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonChooseFolderOut);
             this.Controls.Add(this.textFolderOut);
             this.Controls.Add(this.labelFolderOut);
@@ -119,6 +158,9 @@
         private System.Windows.Forms.Label labelFolderOut;
         private System.Windows.Forms.TextBox textFolderOut;
         private System.Windows.Forms.Button buttonChooseFolderOut;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelFileTypes;
+        private System.Windows.Forms.TextBox textFileTypes;
     }
 }
 
