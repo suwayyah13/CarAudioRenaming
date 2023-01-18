@@ -143,7 +143,6 @@
             this.Controls.Add(this.buttonChooseFolderIn);
             this.Name = "MainForm";
             this.Text = "Rename audio files for car player sorting";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
