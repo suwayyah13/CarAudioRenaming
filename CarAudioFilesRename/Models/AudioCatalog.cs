@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
 namespace CarAudioFilesRename
 {
@@ -9,16 +10,16 @@ namespace CarAudioFilesRename
         public string Path;
         public int Counter;
         public int ParentId;
-        public bool IsFolder;
+        public bool IsDirectory;
         public List<AudioCatalog> Children;
-        public AudioCatalog(int id, string name, string path, int counter, int parentId, bool isFolder, List<AudioCatalog> children)
+        public AudioCatalog(int id, string name, string path, int counter, int parentId, bool isDirectory, List<AudioCatalog> children)
         {
             Id = id;
             Name = name;
             Path = path;
             Counter = counter;
             ParentId = parentId;
-            IsFolder = isFolder;
+            IsDirectory = isDirectory;
             Children = children;
         }
     }

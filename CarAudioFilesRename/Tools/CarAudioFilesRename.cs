@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace CarAudioFilesRename
 {
-    internal class DirectoryTools
+    internal class CarAudioFilesRename
     {
-        public int Id;
-        public string FileFilter;
-        public DirectoryTools(int id, string fileFilter) 
+        private int IdGlobal = 0;
+        private string FileFilter;
+        private DirectoryInfo DirectoryIn;
+        private List<AudioCatalog> AudioCatalog;
+        public CarAudioFilesRename(string fileFilter, DirectoryInfo directoryIn) 
         {
-            Id = id;
             FileFilter = fileFilter;
+            DirectoryIn = directoryIn;
+        }
+        public void FillData()
+        {
+            IdGlobal = 0;
+            AudioCatalog = GetDirectories(DirectoryIn, 0);
+            var a = 1;
         }
         public List<AudioCatalog> GetDirectories(DirectoryInfo directory, int parentId)
         {
@@ -23,20 +32,21 @@ namespace CarAudioFilesRename
             foreach (var subdirectory in directory.GetDirectories())
             {
                 counter++;
-                Id++;
-                var childrenCurrent = GetDirectories(subdirectory, Id);
-                if(childrenCurrent.Count() == 0)
+                IdGlobal++;
+                int id = IdGlobal;
+                var children = GetDirectories(subdirectory, id);
+                if(children.Count() == 0)
                 {
-                     childrenCurrent = GetFiles(subdirectory, Id);
+                    children = GetFiles(subdirectory, id);
                 }
                 folders.Add(new AudioCatalog(
-                    Id, 
+                    id,
                     subdirectory.Name,
                     subdirectory.FullName,
                     counter,
                     parentId,
                     true,
-                    childrenCurrent
+                    children
                 ));
             }
             return folders;
@@ -48,10 +58,9 @@ namespace CarAudioFilesRename
             foreach (var file in directory.GetFiles(FileFilter))
             {
                 counter++;
-                Id++;
-
+                IdGlobal++;
                 files.Add(new AudioCatalog(
-                    Id,
+                    IdGlobal,
                     file.Name,
                     file.FullName,
                     counter,
@@ -61,6 +70,28 @@ namespace CarAudioFilesRename
                 ));
             }
             return files;
+        }
+
+        public void SaveData(List<AudioCatalog> audioCatalog)
+        {
+            foreach (var catalogRow in AudioCatalog)
+            {
+                if(catalogRow.IsDirectory == true)
+                {
+                    SaveDirectory(catalogRow);
+                } else
+                {
+                    SaveFile(catalogRow);
+                }
+            }
+        }
+        private void SaveDirectory(AudioCatalog audioCatalog)
+        {
+
+        }
+        private void SaveFile(AudioCatalog audioCatalog)
+        {
+
         }
     }
 }

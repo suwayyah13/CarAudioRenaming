@@ -1,6 +1,6 @@
 ﻿namespace CarAudioFilesRename
 {
-    partial class MainForm
+    partial class CarAudioFilesRenameForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,10 @@
         {
             this.buttonChooseFolderIn = new System.Windows.Forms.Button();
             this.FolderBrowserDialogInput = new System.Windows.Forms.FolderBrowserDialog();
-            this.textFolderIn = new System.Windows.Forms.TextBox();
+            this.textDirectoryIn = new System.Windows.Forms.TextBox();
             this.labelFolderIn = new System.Windows.Forms.Label();
             this.labelFolderOut = new System.Windows.Forms.Label();
-            this.textFolderOut = new System.Windows.Forms.TextBox();
+            this.textDirectoryOut = new System.Windows.Forms.TextBox();
             this.buttonChooseFolderOut = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.labelFileTypes = new System.Windows.Forms.Label();
@@ -50,16 +50,16 @@
             this.buttonChooseFolderIn.UseVisualStyleBackColor = true;
             this.buttonChooseFolderIn.Click += new System.EventHandler(this.ChooseFolderIn);
             // 
-            // textFolderIn
+            // textDirectoryIn
             // 
-            this.textFolderIn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textDirectoryIn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textFolderIn.Location = new System.Drawing.Point(90, 40);
-            this.textFolderIn.Name = "textFolderIn";
-            this.textFolderIn.ReadOnly = true;
-            this.textFolderIn.Size = new System.Drawing.Size(300, 20);
-            this.textFolderIn.TabIndex = 1;
+            this.textDirectoryIn.Location = new System.Drawing.Point(90, 40);
+            this.textDirectoryIn.Name = "textDirectoryIn";
+            this.textDirectoryIn.ReadOnly = true;
+            this.textDirectoryIn.Size = new System.Drawing.Size(300, 20);
+            this.textDirectoryIn.TabIndex = 1;
             // 
             // labelFolderIn
             // 
@@ -79,13 +79,13 @@
             this.labelFolderOut.Text = "Result folder";
             this.labelFolderOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textFolderOut
+            // textDirectoryOut
             // 
-            this.textFolderOut.Location = new System.Drawing.Point(90, 70);
-            this.textFolderOut.Name = "textFolderOut";
-            this.textFolderOut.ReadOnly = true;
-            this.textFolderOut.Size = new System.Drawing.Size(300, 20);
-            this.textFolderOut.TabIndex = 4;
+            this.textDirectoryOut.Location = new System.Drawing.Point(90, 70);
+            this.textDirectoryOut.Name = "textDirectoryOut";
+            this.textDirectoryOut.ReadOnly = true;
+            this.textDirectoryOut.Size = new System.Drawing.Size(300, 20);
+            this.textDirectoryOut.TabIndex = 4;
             // 
             // buttonChooseFolderOut
             // 
@@ -127,7 +127,7 @@
             this.textFileTypes.TabIndex = 8;
             this.textFileTypes.Text = "*.mp3";
             // 
-            // MainForm
+            // CarAudioFilesRenameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,12 +136,12 @@
             this.Controls.Add(this.labelFileTypes);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonChooseFolderOut);
-            this.Controls.Add(this.textFolderOut);
+            this.Controls.Add(this.textDirectoryOut);
             this.Controls.Add(this.labelFolderOut);
             this.Controls.Add(this.labelFolderIn);
-            this.Controls.Add(this.textFolderIn);
+            this.Controls.Add(this.textDirectoryIn);
             this.Controls.Add(this.buttonChooseFolderIn);
-            this.Name = "MainForm";
+            this.Name = "CarAudioFilesRenameForm";
             this.Text = "Rename audio files for car player sorting";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,10 +152,10 @@
 
         private System.Windows.Forms.Button buttonChooseFolderIn;
         private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialogInput;
-        private System.Windows.Forms.TextBox textFolderIn;
+        private System.Windows.Forms.TextBox textDirectoryIn;
         private System.Windows.Forms.Label labelFolderIn;
         private System.Windows.Forms.Label labelFolderOut;
-        private System.Windows.Forms.TextBox textFolderOut;
+        private System.Windows.Forms.TextBox textDirectoryOut;
         private System.Windows.Forms.Button buttonChooseFolderOut;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelFileTypes;

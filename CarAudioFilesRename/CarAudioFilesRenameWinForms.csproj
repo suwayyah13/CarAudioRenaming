@@ -62,18 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tools\DirectoryTools.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Tools\CarAudioFilesRename.cs" />
+    <Compile Include="CarAudioFilesRenameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="CarAudioFilesRenameForm.Designer.cs">
+      <DependentUpon>CarAudioFilesRenameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AudioCatalog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="CarAudioFilesRenameForm.resx">
+      <DependentUpon>CarAudioFilesRenameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
