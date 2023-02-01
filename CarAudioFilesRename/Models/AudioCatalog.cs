@@ -3,24 +3,24 @@ using System.IO;
 
 namespace CarAudioFilesRename
 {
-    class AudioCatalog
+    public interface IAudioCatalog
     {
-        public int Id;
-        public string Name;
-        public string Path;
-        public int Counter;
-        public int ParentId;
-        public bool IsDirectory;
-        public List<AudioCatalog> Children;
-        public AudioCatalog(int id, string name, string path, int counter, int parentId, bool isDirectory, List<AudioCatalog> children)
-        {
-            Id = id;
-            Name = name;
-            Path = path;
-            Counter = counter;
-            ParentId = parentId;
-            IsDirectory = isDirectory;
-            Children = children;
-        }
+        int Id { get; set; }
+        string Name { get; set; }
+        string Path { get; set; }
+        int Counter { get; set; }
+        int ParentId { get; set; }
+        bool IsDirectory { get; set; }
+        List<IAudioCatalog> Children { get; set; }
+    }
+    public class AudioCatalog: IAudioCatalog
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Path { get; set; }
+        public int Counter { get; set; }
+        public int ParentId { get; set; }
+        public bool IsDirectory { get; set; }
+        public List<IAudioCatalog> Children { get; set; }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CarAudioFilesRename
@@ -15,13 +12,13 @@ namespace CarAudioFilesRename
         }
         private void ChooseFolderIn(object sender, EventArgs e)
         {
-           textDirectoryIn.Text = ChooseFolder();
+           textDirectoryIn.Text = ChooseFolder(textDirectoryIn.Text);
         }
         private void ChooseFolderOut(object sender, EventArgs e)
         {
-            textDirectoryOut.Text = ChooseFolder();
+            textDirectoryOut.Text = ChooseFolder(textDirectoryOut.Text);
         }
-        private string ChooseFolder()
+        private string ChooseFolder(string currentValue)
         {
             if (FolderBrowserDialogInput.ShowDialog() == DialogResult.OK)
             {
@@ -29,7 +26,7 @@ namespace CarAudioFilesRename
             }
             else 
             {
-                return "";
+                return currentValue;
             }
         }
         private void ShowErrorText(string errorText)
@@ -55,7 +52,7 @@ namespace CarAudioFilesRename
         {
             DirectoryInfo directoryIn;
             DirectoryInfo directoryOut;
-            CarAudioFilesRename directoryTools;
+            ICarAudioFilesRename carAudioFilesRename;
             if (String.IsNullOrEmpty(textDirectoryIn.Text))
             {
                 ShowErrorText("Please, choose Source folder");
@@ -71,12 +68,12 @@ namespace CarAudioFilesRename
                 ShowErrorText("Please, fill File types");
                 return;
             }
-            if (!System.IO.File.Exists(textDirectoryIn.Text))
+            if (!System.IO.Directory.Exists(textDirectoryIn.Text))
             {
                 ShowErrorText("Folder does not exists: " + textDirectoryIn.Text);
                 return;
             }
-            if (!System.IO.File.Exists(textDirectoryOut.Text))
+            if (!System.IO.Directory.Exists(textDirectoryOut.Text))
             {
                 ShowErrorText("Folder does not exists: " + textDirectoryOut.Text);
                 return;
@@ -91,9 +88,8 @@ namespace CarAudioFilesRename
                 ShowErrorText(ex.Message);
                 return;
             }
-            directoryTools = new CarAudioFilesRename(textFileTypes.Text, directoryIn);
-            directoryTools.FillData();
+            carAudioFilesRename = new CarAudioFilesRename(textFileTypes.Text, directoryIn);
+            carAudioFilesRename.FillData();
         }
-
     }
 }

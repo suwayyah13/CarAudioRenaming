@@ -8,13 +8,23 @@ using System.Xml.Linq;
 
 namespace CarAudioFilesRename
 {
-    internal class CarAudioFilesRename
+    public interface ICarAudioFilesRename
     {
-        private int IdGlobal = 0;
-        private string FileFilter;
-        private DirectoryInfo DirectoryIn;
-        private List<AudioCatalog> AudioCatalog;
-        public CarAudioFilesRename(string fileFilter, DirectoryInfo directoryIn) 
+        int IdGlobal { get; set; }
+        string FileFilter { get; set; }
+        DirectoryInfo DirectoryIn { get; set; }
+        List<IAudioCatalog> AudioCatalog { get; set; }
+        void FillData();
+        List<IAudioCatalog> GetDirectories(DirectoryInfo directory, int parentId);
+        List<IAudioCatalog> GetFiles(DirectoryInfo directory, int parentId);
+    }
+    internal class CarAudioFilesRename : ICarAudioFilesRename
+    {
+        public int IdGlobal { get; set; }
+        public string FileFilter { get; set; }
+        public DirectoryInfo DirectoryIn { get; set; }
+        public List<IAudioCatalog> AudioCatalog { get; set; }
+        public CarAudioFilesRename(string fileFilter, DirectoryInfo directoryIn)
         {
             FileFilter = fileFilter;
             DirectoryIn = directoryIn;
@@ -23,12 +33,11 @@ namespace CarAudioFilesRename
         {
             IdGlobal = 0;
             AudioCatalog = GetDirectories(DirectoryIn, 0);
-            var a = 1;
         }
-        public List<AudioCatalog> GetDirectories(DirectoryInfo directory, int parentId)
+        public List<IAudioCatalog> GetDirectories(DirectoryInfo directory, int parentId)
         {
             int counter = 0;
-            List<AudioCatalog> folders = new List<AudioCatalog>();
+            List<IAudioCatalog> folders = new List<IAudioCatalog>();
             foreach (var subdirectory in directory.GetDirectories())
             {
                 counter++;
@@ -39,42 +48,45 @@ namespace CarAudioFilesRename
                 {
                     children = GetFiles(subdirectory, id);
                 }
-                folders.Add(new AudioCatalog(
-                    id,
-                    subdirectory.Name,
-                    subdirectory.FullName,
-                    counter,
-                    parentId,
-                    true,
-                    children
-                ));
+                var currentRow = new AudioCatalog
+                {
+                    Id = id,
+                    Name = subdirectory.Name,
+                    Path = subdirectory.FullName,
+                    Counter = counter,
+                    ParentId = parentId,
+                    IsDirectory = true,
+                    Children = children
+                };
+                folders.Add(currentRow);
             }
             return folders;
         }
-        public List<AudioCatalog> GetFiles(DirectoryInfo directory, int parentId)
+        public List<IAudioCatalog> GetFiles(DirectoryInfo directory, int parentId)
         {
-            List<AudioCatalog> files = new List<AudioCatalog>();
+            List<IAudioCatalog> files = new List<IAudioCatalog>();
             int counter = 0;
             foreach (var file in directory.GetFiles(FileFilter))
             {
                 counter++;
                 IdGlobal++;
-                files.Add(new AudioCatalog(
-                    IdGlobal,
-                    file.Name,
-                    file.FullName,
-                    counter,
-                    parentId,
-                    false,
-                    new List<AudioCatalog>()
-                ));
+                var currentRow = new AudioCatalog
+                {
+                    Id = IdGlobal,
+                    Name = file.Name,
+                    Path = file.FullName,
+                    Counter = counter,
+                    ParentId = parentId,
+                    IsDirectory = false,
+                    Children = new List<IAudioCatalog>()
+                };
+                files.Add(currentRow);
             }
             return files;
         }
-
-        public void SaveData(List<AudioCatalog> audioCatalog)
+        public void SaveData(List<IAudioCatalog> audioCatalog)
         {
-            foreach (var catalogRow in AudioCatalog)
+            foreach (var catalogRow in audioCatalog)
             {
                 if(catalogRow.IsDirectory == true)
                 {
@@ -85,11 +97,11 @@ namespace CarAudioFilesRename
                 }
             }
         }
-        private void SaveDirectory(AudioCatalog audioCatalog)
+        private void SaveDirectory(IAudioCatalog audioCatalog)
         {
 
         }
-        private void SaveFile(AudioCatalog audioCatalog)
+        private void SaveFile(IAudioCatalog audioCatalog)
         {
 
         }
